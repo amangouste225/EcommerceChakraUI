@@ -1,15 +1,20 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider as Provider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+
 import "./index.css";
 import { Navbar } from "./components/Navbar.jsx";
+import { ProductsUI } from "./ui/ProductsUI.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ChakraProvider>
+  <Provider>
     <Router>
       <Navbar />
-      <main>{/* <Routes to></Routes> */}</main>
+      <main>
+        <Routes>
+          <Route path="/products" element={<ProductsUI />}></Route>
+        </Routes>
+      </main>
     </Router>
-  </ChakraProvider>
+  </Provider>
 );

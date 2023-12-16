@@ -32,7 +32,6 @@ const NavLinks = ({ path, children }) => (
     py={2}
     fontSize="md"
     fontWeight={600}
-    rounded="md"
     _hover={{
       textDecoration: "none",
     }}
@@ -47,7 +46,11 @@ export const Navbar = () => {
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-      <Flex h={16} alignItems="center" justifyContent="space-between">
+      <Flex
+        h={16}
+        alignItems="center"
+        justifyContent={{ base: "space-between", lg: "space-around" }}
+      >
         <IconButton
           size="md"
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -62,14 +65,13 @@ export const Navbar = () => {
             </Flex>{" "}
           </Link>
 
-          <HStack display={{ base: "none", md: "flex" }}>
+          <HStack as="nav" display={{ base: "none", md: "flex" }} ml="6">
             <Input
               placeholder="Search Products"
-              size="md"
-              variant="outline"
-              outline="5px"
-              width="auto"
-              rounded="xl"
+              width={{ md: "0px", base: "200px", lg: "400px", xl: "600px" }}
+              variant="border"
+              border="5px"
+              rounded="none"
               focusBorderColor="white.400"
             />
           </HStack>
@@ -77,17 +79,17 @@ export const Navbar = () => {
 
         <Flex alignItems="center">
           <NavLinks>
-            <HStack as="nav" spacing={6} display={{ base: "none", md: "flex" }}>
+            <HStack
+              as="nav"
+              spacing={9}
+              display={{ base: "none", md: "flex" }}
+              mr={9}
+            >
               {links.map((link) => (
                 <NavLinks key={link.link} path={link.path}>
                   {link.link}
                 </NavLinks>
               ))}
-              <Icon
-                as={ColorMode === "light" ? MoonIcon : SunIcon}
-                alignSelf="center"
-                onClick={() => toggleColorMode()}
-              />
             </HStack>
           </NavLinks>
           <Button
@@ -108,8 +110,8 @@ export const Navbar = () => {
             p={2}
             to="/register"
             fontSize="sm"
-            ml={5}
-            rounded="xl"
+            mx={5}
+            rounded="none"
             px={8}
             fontWeight={600}
             _hover={{ bg: "orange.400" }}
@@ -118,6 +120,12 @@ export const Navbar = () => {
           >
             Sign Up
           </Button>
+          <Icon
+            cursor="pointer"
+            as={ColorMode === "light" ? MoonIcon : SunIcon}
+            alignSelf="center"
+            onClick={() => toggleColorMode()}
+          />
         </Flex>
       </Flex>
 
